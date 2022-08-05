@@ -17,9 +17,6 @@ const App = () => {
   const [dir, setDir] = useState([0, -1]);
   const [speed, setSpeed] = useState(null);
   const [gameOver, setGameOver] = useState(false);
-  const [score, setScore] = useState(0);
-
-  var scoree = 0;
 
   useInterval(() => gameLoop(), speed);
 
@@ -63,14 +60,12 @@ const App = () => {
   };
 
   const gameLoop = () => {
-    scoree++;
     const snakeCopy = JSON.parse(JSON.stringify(snake));
     const newSnakeHead = [snakeCopy[0][0] + dir[0], snakeCopy[0][1] + dir[1]];
     snakeCopy.unshift(newSnakeHead);
     if (checkCollision(newSnakeHead)) endGame();
     if (!checkAppleCollision(snakeCopy)) snakeCopy.pop();
     setSnake(snakeCopy);
-    console.log(scoree);
   };
 
   const startGame = () => {
@@ -85,9 +80,9 @@ const App = () => {
     const context = canvasRef.current.getContext("2d");
     context.setTransform(SCALE, 0, 0, SCALE, 0, 0);
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    context.fillStyle = " pink";
+    context.fillStyle = "#181818";
     snake.forEach(([x, y]) => context.fillRect(x, y, 1, 1));
-    context.fillStyle = "skyblue";
+    context.fillStyle = "#F27405";
     context.fillRect(apple[0], apple[1], 1, 1);
   }, [snake, apple, gameOver]);
 
@@ -100,7 +95,7 @@ const App = () => {
         onKeyDown={(e) => moveSnake(e)}
       >
         <canvas
-          style={{ border: "1px solid black" }}
+          style={{ border: "1px solid  #ffd700" }}
           ref={canvasRef}
           width={`${CANVAS_SIZE[0]}px`}
           height={`${CANVAS_SIZE[1]}px`}
