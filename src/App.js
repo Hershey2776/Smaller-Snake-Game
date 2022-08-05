@@ -88,6 +88,9 @@ const App = () => {
 
   return (
     <>
+      <div className="title">
+        <h3>Play A Game, Snake!</h3>
+      </div>
       <div
         className="canvas"
         role="button"
